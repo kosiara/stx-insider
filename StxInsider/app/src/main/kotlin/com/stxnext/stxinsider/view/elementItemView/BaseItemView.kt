@@ -45,7 +45,7 @@ open abstract class BaseItemView(private val mContext: Context, attrs: Attribute
 
         try {
             val file = context.assets.open(item.imagePath)
-            teamImageView.setImageDrawable(Drawable.createFromStream(file, null))
+            //teamImageView.setImageDrawable(Drawable.createFromStream(file, null))
         } catch (e: IOException) {
             Log.e(TAG, "Error creating team image: " + e.toString())
         }
