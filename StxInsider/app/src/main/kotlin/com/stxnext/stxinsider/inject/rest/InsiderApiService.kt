@@ -29,11 +29,14 @@ class InsiderApiService {
     fun getTeamsAsync(onResponse: (List<SliderItem>) -> Unit, onError: () -> Unit)  {
         val callback = object : Callback<List<SliderItem>> {
             override fun onResponse(p0: Call<List<SliderItem>>?, response: Response<List<SliderItem>>?) {
-                onResponse.invoke(response!!.body());
+                val body = response?.body()
+                body?.let {
+                    onResponse.invoke(body);
+                } ?: onFailure(null, Throwable("Null BODY in RESPONSE"))
             }
 
-            override fun onFailure(p0: Call<List<SliderItem>>?, p1: Throwable?) {
-                Log.e(InsiderApiService::class.java.simpleName, "Error in REST call: " + p0.toString())
+            override fun onFailure(p0: Call<List<SliderItem>>?, throwable: Throwable?) {
+                Log.e(InsiderApiService::class.java.simpleName, "Error in REST call: " + throwable.toString())
                 onError.invoke()
             }
         }
