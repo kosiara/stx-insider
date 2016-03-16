@@ -62,6 +62,13 @@ infix fun Activity.loge(txt : String) {
 }
 
 /**
+ * this logw "This is a warning message"
+ */
+infix fun Activity.logw(txt : String) {
+    Log.w(this.javaClass.simpleName, txt)
+}
+
+/**
  * Checks for active permission
  *
  * # Usage
